@@ -1,18 +1,26 @@
 # 289212-WebAndApp
 
-# ---------------------
+## ---------------------
 
-# ls - dir (windows)
+## on windows a / is a \
+
+## ls - dir (windows)
 list Directory/folder contents
 
-# cd
+## cd
 changes directory/folder
 
-# cd ..
+## cd ..
 changes to parent directory
 
-# mkdir
+## mkdir
 make directory (folder)
 
-# rmdir
+## rmdir
 remove Directory
+
+# python projects
+
+## create a virtual environment
+python3 -m venv env  
+source env/bin/activate
