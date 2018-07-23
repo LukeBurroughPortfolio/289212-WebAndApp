@@ -1,3 +1,15 @@
 # 289212-WebAndApp
 
-packages>markdown>preview
+# ---------------------
+
+# ls - dir (windows)
+list Directory/folder contents
+
+# cd
+changes directory/folder
+
+# mkdir
+make directory (folder)
+
+# rmdir
+remove Directory
