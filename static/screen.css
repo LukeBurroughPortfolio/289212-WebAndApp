@@ -80,8 +80,8 @@ a {
 
 /* class selector (multiple instances) */
 
-.menu-items {
-
+.center-text {
+  text-align: center;
 }
 
 .btn-yellow {
@@ -141,6 +141,47 @@ a {
 #menu .price {
   float: right;
   padding-right: 1em;
+}
+
+/* forms */
+
+input, textarea {
+  border: solid 2px #5DB;
+  border-radius: 3px;
+  color: #2A8;
+  font-family: 'Monda', sans-serif;
+  font-size: 0.8em;
+  height: 2em;
+  padding: 0 0.5em;
+}
+
+textarea {
+  height: auto;
+  width: 100%;
+}
+
+#menu input, #menu textarea {
+  float: left;
+  margin-right: 1em;
+  margin-top: -0.15em;
+  width: 2.2em;
+}
+
+#order-details {
+  margin: auto;
+  max-width: 500px;
+  padding: 2em 2.5em;
+}
+
+#order-details input,
+#order-details textarea {
+  box-sizing: border-box;
+  min-height: 3em;
+  width: 100%;
+}
+
+#login {
+  text-align: center;
 }
 
 /* pseudo-class selector (for different states) */
