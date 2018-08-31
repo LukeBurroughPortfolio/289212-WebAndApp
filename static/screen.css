@@ -16,6 +16,7 @@ body {
   color: #2A8;
   font-family: 'Monda', sans-serif;
   margin: 0;
+  overflow: scroll;
 }
 
 h1 {
@@ -66,7 +67,7 @@ a {
   max-width: 1140px;
   padding: 20px 0;
   padding-bottom: 2.5em;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr ;
   grid-template-rows: auto;
 }
 
@@ -108,7 +109,7 @@ a {
 /* descendant selectors */
 
 #menu div {
-  grid-column: span 3;
+  grid-column: span 1;
   margin: 0 1em;
 }
 
@@ -123,27 +124,7 @@ a {
   text-align: center;
 }
 
-#menu h2 {
-  margin-top: 0.5em;
-  text-align: center;
-}
-
-#menu ol,
-#menu ul {
-  padding-left: 2em;
-}
-
-#menu li {
-  margin-top: 0.4em;
-  width: 100%;
-}
-
-#menu .price {
-  float: right;
-  padding-right: 1em;
-}
-
-/* forms */
+/* forms
 
 input, textarea {
   border: solid 2px #5DB;
@@ -182,16 +163,16 @@ textarea {
 
 #login {
   text-align: center;
-}
+}*/
 
-/* pseudo-class selector (for different states) */
+/* pseudo-class selector (for different states)
 
 a:hover {
   color: #DA0;
   text-decoration: underline;
-}
+}*/
 
-/* media query */
+/* media query
 
 @media only screen and (min-width: 720px) {
 
@@ -206,4 +187,4 @@ a:hover {
     border-right: 3px solid #2A8;
   }
 
-}
+}*/

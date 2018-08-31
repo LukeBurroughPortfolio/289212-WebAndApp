@@ -10,26 +10,25 @@ app.secret_key = '9970436dddec6e16b82c62475435623fdbe7fa03'
 # export FLASK_APP=run.py; export FLASK_DEBUG=1
 # flask run
 
-MENUDB = 'menu.db'
+MENUDB = 'foods.db'
 
 def fetchMenu(con):
-  burgers = []
-  free = '0'
-  cur = con.execute('SELECT burger,price FROM burgers WHERE price>=?', (free,))
+  BurgerWrapPies = []
+  cur = con.execute('SELECT Name,Gluten,Eggs,Soy,Fish_crust,peanuts,tree_nuts,sesame_seeds,sulphites,Lupin,Preservative,Flavour,Colours FROM Burgers')
   for row in cur:
-    burgers.append(list(row))
+    BurgerWrapPies.append(list(row))
 
   drinks = []
-  cur = con.execute('SELECT drink,price FROM drinks')
+  cur = con.execute('SELECT ID,name FROM drinks')
   for row in cur:
     drinks.append(list(row))
 
   sides = []
-  cur = con.execute('SELECT side,price FROM sides')
+  cur = con.execute('SELECT ID,name FROM dessert')
   for row in cur:
     sides.append(list(row))
 
-  return {'burgers':burgers, 'drinks':drinks, 'sides':sides}
+  return {'burgers':BurgerWrapPies, 'drinks':drinks, 'sides':sides}
 
 @app.route('/')
 def index():
