@@ -12,48 +12,40 @@ app = Flask(__name__)
 FOODDB = 'foods.db'
 
 def FetchEverything(con):
-    BurgerWrapPies = []
-    cur = con.execute('SELECT Name,Gluten,Eggs,Soy,Fish_crust,peanuts,tree_nuts,sesame_seeds,sulphites,Lupin,Preservative,Flavour,Colours FROM Burgers')
-    for row in cur:
-        BurgerWrapPies.append(list(row))
+    details = {}
+    items = {}
+    Timer = {}
+    for input in request.form:
+      Timer[input] = 1
 
-    Breakfast = []
-    cur = con.execute('SELECT Name,Gluten,Eggs,Soy,Fish_crust,peanuts,tree_nuts,sesame_seeds,sulphites,Lupin,Preservative,Flavour,Colours FROM breakfast')
-    for row in cur:
-        Breakfast.append(list(row))
+    for input in request.form:
+        if input == 'Ftype':
+            details[input] = request.form[input]
+        elif len(items) > len(Timer) - 1 :
+            items[input] = " ("+request.form[input]+" != 'N') and"
+        else:
+            items[input] = " ("+request.form[input]+" != 'N')"
+    Catagory = "".join(items)
+    table = "".join(details)
+    Display = []
+    cur = con.execute( 'SELECT * FROM %s WHERE %s' % (table, Catagory) )
 
-    sides = []
-    cur = con.execute('SELECT Name,Gluten,Eggs,Soy,Fish_crust,peanuts,tree_nuts,sesame_seeds,sulphites,Lupin,Preservative,Flavour,Colours FROM sides')
     for row in cur:
-        sides.append(list(row))
-
-    dessert = []
-    cur = con.execute('SELECT Name,Gluten,Eggs,Soy,Fish_crust,peanuts,tree_nuts,sesame_seeds,sulphites,Lupin,Preservative,Flavour,Colours FROM dessert')
-    for row in cur:
-        dessert.append(list(row))
-
-    drinks = []
-    cur = con.execute('SELECT Name,Gluten,Eggs,Soy,Fish_crust,peanuts,tree_nuts,sesame_seeds,sulphites,Lupin,Preservative,Flavour,Colours FROM drinks')
-    for row in cur:
-        drinks.append(list(row))
-
-    condiments = []
-    cur = con.execute('SELECT Name,Gluten,Eggs,Soy,Fish_crust,peanuts,tree_nuts,sesame_seeds,sulphites,Lupin,Preservative,Flavour,Colours FROM condiments')
-    for row in cur:
-        condiments.append(list(row))
-
-    return {'burgers':BurgerWrapPies, 'drinks':drinks, 'sides':sides, 'breakfast':Breakfast, 'dessert':dessert, 'condiments':condiments}
+        Display.append(list(row))
+    return {'display': Display}
 
 @app.route('/')
 def index():
   con = sqlite3.connect(FOODDB)
-  menu = FetchEverything(con)
   con.close()
+
   return render_template('index.html', disclaimer='Y = present, N = not present, T = traces')
 
-@app.route('/order' methods=['POST'])
-def index():
+@app.route('/process', methods=["POST"])
+def confirm():
+
   con = sqlite3.connect(FOODDB)
-  menu = FetchEverything(con)
+  food = FetchEverything(con)
   con.close()
-  return render_template('order.html', disclaimer='Y = present, N = not present, T = traces', burgers=menu['burgers'], drinks=menu['drinks'], sides=menu['sides'], breakfasts=menu['breakfast'], desserts=menu['dessert'], condiments=menu['condiments'])
+
+  return render_template('process.html', disclaimer='Y = present, N = not present, T = traces', display=food['display'])

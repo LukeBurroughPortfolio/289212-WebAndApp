@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Mc allergys{% endblock %}
+
+{% block content %}
+
+    <div id="header">
+    </div>
+
+    <div id="menu">
+      <div>
+        <form action="/process" method="POST">
+          <h2>Food selection</h2>
+          <input type="radio" name="Ftype" value="Burger">  Burgers,Wraps and Pies<br>
+          <input type="radio" name="Ftype" value="breakfast"> Breakfast<br>
+          <input type="radio" name="Ftype" value="dessert"> Desserts<br>
+          <input type="radio" name="Ftype" value="sides"> Sides<br>
+          <input type="radio" name="Ftype" value="drinks"> Drinks<br>
+          <input type="radio" name="Ftype" value="condiments"> Condiments<br>
+          <h2>Allergin selection</h2>
+          <input type="checkbox" name="gluten" value="glutenINPUT"> Gluten<br>
+          <input type="checkbox" name="egg" value="eggINPUT"> Egg<br>
+          <input type="checkbox" name="milk" value="milkINPUT"> Milk<br>
+          <input type="checkbox" name="soy" value="soyINPUT"> Soy<br>
+          <input type="checkbox" name="fish" value="fishINPUT"> Fish and Crustatia<br>
+          <input type="checkbox" name="peanuts" value="peanutsINPUT"> Peanuts<br>
+          <input type="checkbox" name="treeNuts" value="treeNutsINPUT"> Tree Nuts<br>
+          <input type="checkbox" name="sesameSeeds" value="sesameINPUT"> Sesame Seeds<br>
+          <input type="checkbox" name="sulpites" value="sulpitesINPUT"> Sulpites<br>
+          <input type="checkbox" name="lupin" value="lupinINPUT"> Lupin<br>
+          <input type="checkbox" name="preservatives" value="preservINPUT"> Preservatives<br>
+          <input type="checkbox" name="flavour" value="flavourINPUT"> Flavour<br>
+          <input type="checkbox" name="colour" value="colourINPUT"> Colours<br>
+          <input type="submit" value="Submit">
+        </form>
+
+        <div>
+          <h2>Menu</h2>
+          <ul class="menu-items">
+            {% for display in displaylist %}
+            <li>{{ display }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+
+    </div>
+{% endblock %}
