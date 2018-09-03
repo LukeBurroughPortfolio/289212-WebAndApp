@@ -11,28 +11,6 @@ app = Flask(__name__)
 
 FOODDB = 'foods.db'
 
-def FetchEverything(con):
-    details = {}
-    items = {}
-    Timer = {}
-    for input in request.form:
-      Timer[input] = 1
-
-    for input in request.form:
-        if input == 'Ftype':
-            details[input] = request.form[input]
-        elif len(items) > len(Timer) - 1 :
-            items[input] = " ("+request.form[input]+" != 'N') and"
-        else:
-            items[input] = " ("+request.form[input]+" != 'N')"
-    Catagory = "".join(items)
-    table = "".join(details)
-    Display = []
-    cur = con.execute( 'SELECT * FROM %s WHERE %s' % (table, Catagory) )
-
-    for row in cur:
-        Display.append(list(row))
-    return {'display': Display}
 
 @app.route('/')
 def index():
@@ -43,9 +21,30 @@ def index():
 
 @app.route('/process', methods=["POST"])
 def confirm():
-
   con = sqlite3.connect(FOODDB)
-  food = FetchEverything(con)
-  con.close()
 
-  return render_template('process.html', disclaimer='Y = present, N = not present, T = traces', display=food['display'])
+  table = None
+  cats = ''
+
+  for input in request.form:
+    if input == 'Ftype':
+        table = request.form[input]
+    else:
+        cats += request.form[input]
+        cats += ' = "N" or '
+        cats += request.form[input]
+        cats += ' = "T" AND '
+
+  cats = cats[0:-5]
+  if len(cats) >= 1:
+      q = 'SELECT * FROM %s WHERE %s' % (table,cats)
+  else:
+      q = 'SELECT * FROM %s ' % (table)
+  cur = con.execute(q)
+
+  display = []
+  for row in cur:
+      display.append(row)
+
+  con.close()
+  return render_template('process.html', disclaimer='Y = present, N = not present, T = traces', display=display)

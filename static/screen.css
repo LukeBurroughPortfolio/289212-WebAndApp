@@ -67,7 +67,7 @@ a {
   max-width: 1140px;
   padding: 20px 0;
   padding-bottom: 2.5em;
-  grid-template-columns: 1fr 1fr ;
+  grid-template-columns: 1fr ;
   grid-template-rows: auto;
 }
 
@@ -109,7 +109,7 @@ a {
 /* descendant selectors */
 
 #menu div {
-  grid-column: span 1;
+  grid-column: span 2;
   margin: 0 1em;
 }
 
@@ -119,72 +119,13 @@ a {
 }
 
 #menu h1 {
-  grid-column: span 3;
+  grid-column: span 7;
   padding-bottom: 0.3em;
   text-align: center;
 }
 
-/* forms
-
-input, textarea {
-  border: solid 2px #5DB;
-  border-radius: 3px;
-  color: #2A8;
-  font-family: 'Monda', sans-serif;
-  font-size: 0.8em;
-  height: 2em;
-  padding: 0 0.5em;
+#menu li {
+  border: red 5px;
+  grid-column: span 1;
+  padding-bottom: 0.3em;
 }
-
-textarea {
-  height: auto;
-  width: 100%;
-}
-
-#menu input, #menu textarea {
-  float: left;
-  margin-right: 1em;
-  margin-top: -0.15em;
-  width: 2.2em;
-}
-
-#order-details {
-  margin: auto;
-  max-width: 500px;
-  padding: 2em 2.5em;
-}
-
-#order-details input,
-#order-details textarea {
-  box-sizing: border-box;
-  min-height: 3em;
-  width: 100%;
-}
-
-#login {
-  text-align: center;
-}*/
-
-/* pseudo-class selector (for different states)
-
-a:hover {
-  color: #DA0;
-  text-decoration: underline;
-}*/
-
-/* media query
-
-@media only screen and (min-width: 720px) {
-
-  #menu div {
-    grid-column: auto;
-    margin: 0;
-  }
-
-  #menu div:nth-child(3) {
-    border: none;
-    border-left: 3px solid #2A8;
-    border-right: 3px solid #2A8;
-  }
-
-}*/
